@@ -20,7 +20,7 @@ namespace Lab1_MergeSort
         }
         public static void Test_File_List(int seed)
         {
-            int n = 10;
+            int n = 100;
             string filename;
             filename = @"myddatalist.dat";
             MyFileList myFileList = new MyFileList(filename, n, seed);
@@ -29,11 +29,13 @@ namespace Lab1_MergeSort
             stopwatch.Start();
             myFileList.mergeSort3Way();
             stopwatch.Stop();
+            Console.WriteLine("sorted");
+            myFileList.Print(n);
             Console.WriteLine("Number of data {0}", n);
             Console.WriteLine("Time: {0}", stopwatch.Elapsed);
             Console.WriteLine("Ticks: {0}", stopwatch.ElapsedTicks);
         }
-        public static void Test_File_Array_List(int seed)
+        public static void Test_File_Array(int seed)
         {
             int n = 10000;
             string filename;

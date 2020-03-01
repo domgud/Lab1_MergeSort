@@ -113,7 +113,7 @@ namespace Lab1_MergeSort
         {
             Byte[] data = new Byte[12];
             fs.Seek(node, SeekOrigin.Begin);
-            fs.Read(data, 0, 12); //////////////////////////////////////////////////////
+            fs.Read(data, 0, 12); 
             double result = BitConverter.ToDouble(data, 0);
             int iresult = BitConverter.ToInt32(data, 8);
             return (result, iresult);
@@ -124,26 +124,21 @@ namespace Lab1_MergeSort
             // if array of size is zero returns null 
             if (this == null)
                 return;
-
+            GetReady();
             // creating duplicate of given array
             // copying elements of given array into 
             // duplicate array 
             MyFileList fArray = new MyFileList(@"mydatalistcopy.dat", this);
-            Console.WriteLine("aaaaaaaaaaaaaaaaaaaaaaaaaa");
-
-            fArray.Print(fArray.length);
             //// sort function 
             mergeSort3WayRec(fArray, 0, this.length, this);
-            Console.WriteLine("sorted");
-            fArray.Print(fArray.length);
             //// copy back elements of duplicate array 
             //// to given array
-            //for (int i = 0; i < fArray.Length; i++)
-            //{
-            //    gArray.Replace(i, fArray[i]);
-            //}
-            //fArray.fs.Close();
-            //File.Delete(@"mydataaarraycopy.dat");
+            for (int i = 0; i < fArray.Length; i++)
+            {
+                this.Replace(i, fArray, i);
+            }
+            fArray.fs.Close();
+            File.Delete(@"mydatalistcopy.dat");
         }
         public static void mergeSort3WayRec(MyFileList gArray,
                   int low, int high, MyFileList destArray)
@@ -238,25 +233,30 @@ namespace Lab1_MergeSort
             while (k < high)
                 destArray.Replace(l++, gArray, k++);
         }
-        public int NodePointer(int indexxx)
-        {
-            return ((indexxx) * 16 + 4);
-        }
         public void Replace(int index, MyFileList listas, int index2)
         {
             Byte[] data = new Byte[12];
 
-            listas.fs.Seek(NodePointer(index2), SeekOrigin.Begin);
+            listas.fs.Seek(index2*16+4, SeekOrigin.Begin);
             listas.fs.Read(data, 0, 12);
-            Console.WriteLine(BitConverter.ToDouble(data, 0));
-            Console.WriteLine(BitConverter.ToInt32(data, 8));
 
-            fs.Seek(NodePointer(index), SeekOrigin.Begin);
+            fs.Seek(index*16+4, SeekOrigin.Begin);
             fs.Write(data, 0, 12);
         }
         public (double, int) Nodedata(int i)
         {
-            return CurrentData(NodePointer(i));
+            return CurrentData(i*16+4);
+        }
+        public void GetReady()
+        {
+            for (int i=0; i< length; i++)
+            {
+                fs.Seek(i * 16 + 16, SeekOrigin.Begin);
+                Byte[] pointer = new Byte[4];
+                BitConverter.GetBytes(i * 16 + 20).CopyTo(pointer, 0);
+
+                fs.Write(pointer, 0, 4);
+            }
         }
 
     }
