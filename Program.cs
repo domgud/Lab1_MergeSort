@@ -15,8 +15,23 @@ namespace Lab1_MergeSort
             int seed = (int)DateTime.Now.Ticks & 0x0000FFFF;
 
 
-            //Test_File_Array_List(seed);
-            Benchmark(seed);
+            Test_File_List(seed);
+            //Benchmark(seed);
+        }
+        public static void Test_File_List(int seed)
+        {
+            int n = 10;
+            string filename;
+            filename = @"myddatalist.dat";
+            MyFileList myFileList = new MyFileList(filename, n, seed);
+            myFileList.Print(n);
+            Stopwatch stopwatch = new Stopwatch();
+            stopwatch.Start();
+            myFileList.mergeSort3Way();
+            stopwatch.Stop();
+            Console.WriteLine("Number of data {0}", n);
+            Console.WriteLine("Time: {0}", stopwatch.Elapsed);
+            Console.WriteLine("Ticks: {0}", stopwatch.ElapsedTicks);
         }
         public static void Test_File_Array_List(int seed)
         {
