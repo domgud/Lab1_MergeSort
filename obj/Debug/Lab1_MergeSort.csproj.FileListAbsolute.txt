@@ -1,0 +1,6 @@
+C:\Users\dgdom\source\repos\Lab1_MergeSort\Lab1_MergeSort\bin\Debug\Lab1_MergeSort.exe.config
+C:\Users\dgdom\source\repos\Lab1_MergeSort\Lab1_MergeSort\bin\Debug\Lab1_MergeSort.exe
+C:\Users\dgdom\source\repos\Lab1_MergeSort\Lab1_MergeSort\bin\Debug\Lab1_MergeSort.pdb
+C:\Users\dgdom\source\repos\Lab1_MergeSort\Lab1_MergeSort\obj\Debug\Lab1_MergeSort.csprojAssemblyReference.cache
+C:\Users\dgdom\source\repos\Lab1_MergeSort\Lab1_MergeSort\obj\Debug\Lab1_MergeSort.exe
+C:\Users\dgdom\source\repos\Lab1_MergeSort\Lab1_MergeSort\obj\Debug\Lab1_MergeSort.pdb
